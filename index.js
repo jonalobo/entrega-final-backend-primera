@@ -1,11 +1,22 @@
-const express = require('express')
+require('dotenv').config()
 
+const express = require('express')
+const cors = require('cors')
+const rutaProductos = require('./routers/productos')
+
+//Inicializa el app
 const app = express()
 
-app.get('/',(req,res)=>{
-    console.log('first')
-})
+//Middleware
+app.use(cors())
 
-app.listen('3000',(e)=>{
-    console.log('Activo')
+
+//Rutas se encuentran en la carpeta Router
+//Los controladores en la carpeta controller
+app.use('/api', rutaProductos)
+
+const PORT = process.env.PORT || 8080
+
+app.listen(PORT,(e)=>{
+    console.log(`Servidor escuchando en el puerto ${PORT} `)
 })
