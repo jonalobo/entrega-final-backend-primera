@@ -1,10 +1,10 @@
 const {request,response} = require('express')
-const { Producto, productos } = require('../helpers/claseProductos')
+const { Producto, productos, leer, prueba } = require('../helpers/claseProductos')
 
 
-const obtenerTodos = ( req = request , res = response)=>{
+const obtenerTodos =async ( req = request , res = response)=>{
     //Acá debo traer los productos en la persistencia del FS
-    console.log('Todos pueden verlo')
+    console.log(await leer())
 }
 
 const obtenerPorId = (req,res)=>{
