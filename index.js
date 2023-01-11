@@ -9,6 +9,8 @@ const app = express()
 
 //Middleware
 app.use(cors())
+//Sin express.json no puede recibir json el backend
+app.use(express.json())
 
 
 //Rutas se encuentran en la carpeta Router
