@@ -29,27 +29,21 @@ class Producto {
     const productoTexto = JSON.stringify(productos);
     escribir("productos.txt", productoTexto);
   }
-  lectura() {
-    leer();
-  }
 }
 
 async function leer() {
+  //Este contenedor debe estar fuera del try catch para evitar bucles
+  let contedorProducto = []
   try {
-    await fs.promises
-      .readFile("productos.txt", "utf-8")
-      .then(async (contenido) => {
-        const demo = JSON.parse(contenido)
-        await prueba(demo)
-      });
+    await fs.promises.readFile("productos.txt", "utf-8").then((contenido) => {
+      contedorProducto = JSON.parse(contenido);
+    });
   } catch (error) {
     console.log(error);
   }
+  return contedorProducto
 }
 
-async function prueba(demo) {
-    return await demo
-}
 
 async function escribir(nombre, producto) {
   try {
@@ -64,6 +58,5 @@ module.exports = {
   productos,
   Producto,
   leer,
-  escribir,
-  prueba
+  escribir
 };
