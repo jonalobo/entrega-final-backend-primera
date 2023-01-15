@@ -1,5 +1,5 @@
 const {request,response} = require('express')
-const { Producto, productos, leer } = require('../helpers/claseProductos')
+const { Producto, productos, leer, buscarProductoId } = require('../helpers/claseProductos')
 
 
 const obtenerTodos = async ( req = request , res = response)=>{
@@ -8,8 +8,10 @@ const obtenerTodos = async ( req = request , res = response)=>{
     res.json(productoRespuesta)
 }
 
-const obtenerPorId = (req,res)=>{
-    res.send(req.params)
+const obtenerPorId =async (req,res)=>{
+    const {id} = req.params
+    let productoSeleccionado = await buscarProductoId(id)
+    res.json(productoSeleccionado)
 }
 
 const agregarProductoControlador = (req = request,res = response)=>{

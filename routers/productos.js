@@ -18,10 +18,11 @@ rutaProductos.post('/productos', [
     validacion
 ] ,agregarProductoControlador)
 //Ruta solo para administradores(administrador)
-rutaProductos.put('/productos', [
+rutaProductos.put('/:id/productos', [
     check('rol', 'No es un rol válido').isIn(['administrador']),
     validacion
 ] ,( req , res )=>{
+    console.log(req.params)
     console.log('Ruta put')
 })
 //Ruta solo para administradores(administrador)

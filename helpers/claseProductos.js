@@ -44,6 +44,18 @@ async function leer() {
   return contedorProducto
 }
 
+async function buscarProductoId(identificador) {
+  let demo = {msg:"No existe el ID"}
+  let productosDesdeFs = await leer()
+  productosDesdeFs.map((e)=>{
+    const numero = e.id
+    if (numero == identificador) {
+      demo = e
+    }
+  })
+  return  demo
+}
+
 
 async function escribir(nombre, producto) {
   try {
@@ -58,5 +70,6 @@ module.exports = {
   productos,
   Producto,
   leer,
-  escribir
+  escribir,
+  buscarProductoId
 };
