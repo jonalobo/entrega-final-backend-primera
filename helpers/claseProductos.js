@@ -56,6 +56,23 @@ async function buscarProductoId(identificador) {
   return  demo
 }
 
+async function actualizarPorId(identificador, actualizado) {
+  const nuevosProductos = []
+  let actualizarId = await leer()
+  actualizarId.map((e)=>{
+    if (e.id == identificador) {
+       e = actualizado
+       return actualizado
+    }
+    else {
+      console.log('No existe')
+    }
+    nuevosProductos.push(e)
+  })
+  const demo1 = JSON.stringify(nuevosProductos) 
+  return escribir('demo.txt', demo1)
+}
+
 
 async function escribir(nombre, producto) {
   try {
@@ -71,5 +88,6 @@ module.exports = {
   Producto,
   leer,
   escribir,
-  buscarProductoId
+  buscarProductoId,
+  actualizarPorId
 };

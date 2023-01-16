@@ -1,5 +1,5 @@
 const {request,response} = require('express')
-const { Producto, productos, leer, buscarProductoId } = require('../helpers/claseProductos')
+const { Producto, productos, leer, buscarProductoId, actualizarPorId } = require('../helpers/claseProductos')
 
 
 const obtenerTodos = async ( req = request , res = response)=>{
@@ -23,9 +23,17 @@ const agregarProductoControlador = (req = request,res = response)=>{
     res.json(productos)
 }
 
+const actualizarProductos = async (req = request, res = response)=>{
+    const {id} = req.params
+    const actualizado = req.body
+    let actualizados = await actualizarPorId(id, actualizado)
+    console.log(actualizado)
+}
+
 
 module.exports = {
     obtenerTodos,
     obtenerPorId,
-    agregarProductoControlador
+    agregarProductoControlador,
+    actualizarProductos
 }
