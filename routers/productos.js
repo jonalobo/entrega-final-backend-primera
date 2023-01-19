@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const { check } = require('express-validator')
 
-const { agregarProductoControlador, actualizarProductosControlador, obtenerTodosControlador, obtenerPorIdControlador } = require('../controller/productosControlador')
+const { agregarProductoControlador, actualizarProductosControlador, obtenerTodosControlador, obtenerPorIdControlador,borrarProductosControlador } = require('../controller/productosControlador')
 const { validacion } = require('../helpers/middlewares')
 
 //Enrutador para productos
@@ -23,11 +23,9 @@ rutaProductos.put('/:id/productos', [
     validacion
 ] ,actualizarProductosControlador)
 //Ruta solo para administradores(administrador)
-rutaProductos.delete('/productos', [
+rutaProductos.delete('/:id/productos', [
     check('rol', 'No es un rol válido').isIn(['administrador']),
     validacion
-] ,( req , res )=>{
-    console.log('Ruta delete')
-})
+] ,borrarProductosControlador)
 
 module.exports = rutaProductos

@@ -23,14 +23,14 @@ const agregarProductoControlador = (req = request,res = response)=>{
     //Ahora uso el método de la clase para agregarlo al arreglo
     product.agregarProducto()
     //Devuelvo los objetos guardados en el arreglo de la clase Producto
-    res.json(productos)
+    res.json({msg:'Producto agregado'})
 }
 //Metodo http
 const actualizarProductosControlador = async (req = request, res = response)=>{
     const {id} = req.params
     const {nombre, descripcion, codigo, fotoUrl, precio, stock} = req.body
     const prueba = await leer()
-    const demo1 = []
+    let demo1 = []
     prueba.map((e)=>{
         if (e.id == id) {
             e.nombre = nombre
@@ -44,6 +44,20 @@ const actualizarProductosControlador = async (req = request, res = response)=>{
     })
 
     escribir('productos.txt',JSON.stringify(demo1))
+    res.json({msg:`El producto con ID ${id} ha sido actualizado`})
+}
+//Metodo http
+const borrarProductosControlador = async (req = request, res = response)=>{
+    const {id} = req.params
+    const prueba = await leer()
+    let demo1 = []
+    prueba.map((e)=>{
+        if (e.id != id) {
+            demo1.push(e)
+        }
+    })
+    escribir('productos.txt',JSON.stringify(demo1))
+    res.json({msg:`El producto con ID ${id} ha sido eliminado`})
 }
 
 
@@ -51,5 +65,6 @@ module.exports = {
     obtenerTodosControlador,
     obtenerPorIdControlador,
     agregarProductoControlador,
-    actualizarProductosControlador
+    actualizarProductosControlador,
+    borrarProductosControlador
 }

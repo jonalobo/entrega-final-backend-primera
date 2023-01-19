@@ -1,0 +1,1 @@
+[{"id":1,"fecha":"2023-01-18T22:56:24-06:00","nombre":"dos","descripcion":"cuatro","codigo":"cuatro","fotoUrl":"http:cuatro.com","precio":"cuatro","stock":"cuatro"},{"id":2,"fecha":"2023-01-18T22:56:25-06:00","nombre":"dos","descripcion":"cuatro","codigo":"cuatro","fotoUrl":"http:cuatro.com","precio":"cuatro","stock":"cuatro"}]

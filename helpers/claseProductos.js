@@ -33,15 +33,15 @@ class Producto {
 
 async function leer() {
   //Este contenedor debe estar fuera del try catch para evitar bucles
-  let contedorProducto = [];
+  let contenedorProducto = [];
   try {
     await fs.promises.readFile("productos.txt", "utf-8").then((contenido) => {
-      contedorProducto = JSON.parse(contenido);
+      contenedorProducto = JSON.parse(contenido);
     });
   } catch (error) {
     console.log(error);
   }
-  return contedorProducto;
+  return contenedorProducto;
 }
 
 async function buscarProductoId(identificador) {
@@ -59,7 +59,6 @@ async function buscarProductoId(identificador) {
 async function escribir(nombre, producto) {
   try {
     await fs.promises.writeFile(nombre, producto);
-    console.log("agregado");
   } catch (error) {
     console.log(error);
   }
@@ -73,5 +72,4 @@ module.exports = {
   leer,
   escribir,
   buscarProductoId
-  /* actualizarPorId, */
 };
