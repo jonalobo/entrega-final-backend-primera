@@ -1,1 +1,0 @@
-[{"id":1,"fecha":"2023-01-11T00:39:35-06:00","nombre":"iMac","descripcion":"pc","codigo":"gerfgsfds","fotoUrl":"https://mac.com","precio":15000000,"stock":6}]

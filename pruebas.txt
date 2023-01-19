@@ -1,0 +1,1 @@
+[{"id":1,"fecha":"2023-01-18T21:37:06-06:00","nombre":"iMac","descripcion":"pc","codigo":"gerfgsfds","fotoUrl":"https://mac.com","precio":15000000,"stock":6},{"id":2,"fecha":"2023-01-18T21:37:31-06:00","nombre":"tres","descripcion":"tres","codigo":"tres","fotoUrl":"http:uno.com","precio":"tres","stock":"tres"}]

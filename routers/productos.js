@@ -1,17 +1,16 @@
 const { Router } = require('express')
 const { check } = require('express-validator')
 
-const { obtenerTodos, obtenerPorId, agregarProductoControlador } = require('../controller/productosControlador')
-const { actualizarPorId } = require('../helpers/claseProductos')
+const { agregarProductoControlador, actualizarProductosControlador, obtenerTodosControlador, obtenerPorIdControlador } = require('../controller/productosControlador')
 const { validacion } = require('../helpers/middlewares')
 
 //Enrutador para productos
 const rutaProductos = Router()
 
 //Listar todos los productos(público) 
-rutaProductos.get('/productos',  obtenerTodos)
+rutaProductos.get('/productos',  obtenerTodosControlador)
 //Lista el producto por su ID(público)
-rutaProductos.get('/productos/:id', obtenerPorId)
+rutaProductos.get('/productos/:id', obtenerPorIdControlador)
 
 //Ruta solo para administradores(administrador)
 rutaProductos.post('/productos', [
@@ -22,7 +21,7 @@ rutaProductos.post('/productos', [
 rutaProductos.put('/:id/productos', [
     check('rol', 'No es un rol válido').isIn(['administrador']),
     validacion
-] ,actualizarPorId)
+] ,actualizarProductosControlador)
 //Ruta solo para administradores(administrador)
 rutaProductos.delete('/productos', [
     check('rol', 'No es un rol válido').isIn(['administrador']),
