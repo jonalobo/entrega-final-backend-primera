@@ -14,17 +14,17 @@ rutaProductos.get('/productos/:id', obtenerPorIdControlador)
 
 //Ruta solo para administradores(administrador)
 rutaProductos.post('/productos', [
-    check('rol', 'No es un rol válido').isIn(['administrador']),
+    check('rol', 'Error: -1, ruta productos metodo post no autorizada').isIn(['administrador']),
     validacion
 ] ,agregarProductoControlador)
 //Ruta solo para administradores(administrador)
 rutaProductos.put('/:id/productos', [
-    check('rol', 'No es un rol válido').isIn(['administrador']),
+    check('rol', 'Error: -1, ruta productos metodo put no autorizada').isIn(['administrador']),
     validacion
 ] ,actualizarProductosControlador)
 //Ruta solo para administradores(administrador)
 rutaProductos.delete('/:id/productos', [
-    check('rol', 'No es un rol válido').isIn(['administrador']),
+    check('rol', 'Error: -1, ruta productos metodo delete no autorizada').isIn(['administrador']),
     validacion
 ] ,borrarProductosControlador)
 
