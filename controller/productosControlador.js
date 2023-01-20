@@ -1,7 +1,7 @@
 const {request,response} = require('express')
 const moment = require("moment");
 
-const { Producto, productos, leer, buscarProductoId, escribir } = require('../helpers/claseProductos')
+const { Producto, leer, buscarProductoId, escribir } = require('../helpers/claseProductos')
 
 //Metodo http
 const obtenerTodosControlador = async ( req = request , res = response)=>{
