@@ -1,0 +1,19 @@
+Es importante recalcar la asincronia, si esta no es ordenada puedo tener errores de servidor por ejemplo me pasó que intente recorrer en teoria
+lo que era un object sin embargo la promesa no habia sido resuelta por ende el código se rompe. 
+
+Debo recalcar la importancia de comentar el código sin embargo este metodo me gusta más ya que me desestrezo viendo un documento en blanco que no sea código jajaja.
+
+Por el momento las operaciones CRUD usando el filesystem están trabajando, esto omitiendo el bug de duplicado en el id a la hora de borrar y agregar un nuevo producto.
+
+Tambien ahora tengo otro inconveniente con respecto a la ruta de eliminar un producto especificamente a la hora que este elimina y crea un nuevo arreglo 
+tiende a colocar el id como el numero siguiente del array.lenght sin embargo al habaer eliminado 1 duplica el id del nuevo siguiente 
+producto.(Trabajo en mejorar ese error)
+
+Una buena solución ha sido gracias a mi amigo cristhian logré reparar el error de duplicado id a la hora de borrar( el método fue slice(-1))
+
+Al crear el carrito obtengo su id de vuelta pero a su vez este debe tener incorporado un arreglo de productos que de inicio debe estar vació
+esto para luego ir agregando objetos de productos al arreglo. para esto he implementado la funcion de lectura del documento, si este 
+tiene productos agregados deberia seguir el flujo apartir de los productos ya en lista.
+
+
+El detalle está en que el carrito es muy probable que sea un arreglo que tenga id, fecha y un array de productos.

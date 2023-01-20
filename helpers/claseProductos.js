@@ -4,8 +4,8 @@ const moment = require("moment");
 const productos = [];
 
 class Producto {
-  constructor( nombre, descripcion, codigo, fotoUrl, precio, stock) {
-      this.id = productos.length + 1,
+  constructor(nombre, descripcion, codigo, fotoUrl, precio, stock) {
+    this.id = productos.length + 1,
       this.fecha = moment().format(),
       this.nombre = nombre,
       this.descripcion = descripcion,
@@ -14,10 +14,10 @@ class Producto {
       this.precio = precio,
       this.stock = stock;
   }
-  agregarProducto() {
+  async agregarProducto() {
     const productoAgregar = {
-      id:this.id,
-      fecha:this.fecha,
+      id: this.id,
+      fecha: this.fecha,
       nombre: this.nombre,
       descripcion: this.descripcion,
       codigo: this.codigo,
@@ -25,9 +25,34 @@ class Producto {
       precio: this.precio,
       stock: this.stock,
     };
-    productos.push(productoAgregar);
+    //Debo leer la persistencia para que el actualizar y borrar tengan efecto
+    let prueba = await leer()
+    if (prueba.length > 0) {
+      const prueba3 = prueba.slice(-1)
+      productoAgregar.id = prueba3[0].id + 1
+      prueba.push(productoAgregar)
+      const productoTexto = JSON.stringify(prueba)
+      escribir("productos.txt", productoTexto)
+    } else {
+      console.log('vacio')
+      productos.push(productoAgregar)
+      const productoTexto = JSON.stringify(productos);
+      escribir("productos.txt", productoTexto)
+    }
+    /* if (prueba.length == 0) {
+      productos.push(productoAgregar);
+      const productoTexto = JSON.stringify(productos);
+      escribir("productos.txt", productoTexto)
+    } else {
+      prueba.push(productoAgregar)
+      const productoTexto = JSON.stringify(prueba);
+      escribir("productos.txt", productoTexto)
+    } */
+    /* productos.push(prueba)
+    await escribir('productos.txt',JSON.stringify(productos)) */
+    /* productos.push(productoAgregar);
     const productoTexto = JSON.stringify(productos);
-    escribir("productos.txt", productoTexto);
+    escribir("productos.txt", productoTexto); */
   }
 }
 

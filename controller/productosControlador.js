@@ -1,7 +1,7 @@
 const {request,response} = require('express')
 const moment = require("moment");
 
-const { Producto, productos, leer, buscarProductoId, escribir, /* actualizarPorId */ } = require('../helpers/claseProductos')
+const { Producto, productos, leer, buscarProductoId, escribir } = require('../helpers/claseProductos')
 
 //Metodo http
 const obtenerTodosControlador = async ( req = request , res = response)=>{
@@ -49,9 +49,9 @@ const actualizarProductosControlador = async (req = request, res = response)=>{
 //Metodo http
 const borrarProductosControlador = async (req = request, res = response)=>{
     const {id} = req.params
-    const prueba = await leer()
+    let demo2 = await leer()
     let demo1 = []
-    prueba.map((e)=>{
+    demo2.map((e)=>{
         if (e.id != id) {
             demo1.push(e)
         }

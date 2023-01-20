@@ -2,8 +2,8 @@ require('dotenv').config()
 
 const express = require('express')
 const cors = require('cors')
-const rutaProductos = require('./routers/productos')
-const rutaCarrito = require('./routers/carrito')
+const rutaProductos = require('./routers/productosRuta')
+const rutaCarrito = require('./routers/carritoRuta')
 
 //Inicializa el app
 const app = express()
