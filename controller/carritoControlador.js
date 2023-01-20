@@ -8,8 +8,9 @@ const verCarrito = (req = request,res = response)=>{
 const crearCarrito =  (req = request,res = response)=>{
     const nuevoCarrito = new Carrito()
     res.json(nuevoCarrito)
-
 }
+
+
 const agregarProductoACarrito = async (req = request,res = response)=>{
     const {id} = req.params
     const nuevoCarrito =  new Carrito()
