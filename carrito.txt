@@ -1,1 +1,0 @@
-[{"id":1,"fecha":"2023-01-19T17:09:16-06:00","nombre":"uno","descripcion":"uno","codigo":"uno","fotoUrl":"uno.com","precio":1,"stock":1}]

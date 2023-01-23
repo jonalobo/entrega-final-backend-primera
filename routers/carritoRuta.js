@@ -3,6 +3,7 @@ const { verCarrito,crearCarrito,agregarProductoACarrito } = require('../controll
 
 const rutaCarrito = Router()
 
+//Ruta de prueba
 rutaCarrito.get('/carrito',verCarrito)
 
 

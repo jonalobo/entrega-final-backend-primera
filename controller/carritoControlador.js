@@ -1,13 +1,15 @@
 const {request,response} = require('express')
-const {Carrito} = require('../helpers/claseCarrito')
+const {Carrito, agregarNuevoCarrito} = require('../helpers/claseCarrito')
+
 
 const verCarrito = (req = request,res = response)=>{
     res.json({msg:'ruta get carrito'})
 }
 
-const crearCarrito =  (req = request,res = response)=>{
-    const nuevoCarrito = new Carrito()
-    res.json(nuevoCarrito)
+const crearCarrito = async (req = request,res = response)=>{
+    const newCarrito = new Carrito()
+    agregarNuevoCarrito(newCarrito)
+    res.json({msg:"Carrito creado correctamente"})
 }
 
 
