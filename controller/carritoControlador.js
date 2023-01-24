@@ -1,5 +1,6 @@
 const {request,response} = require('express')
 const {Carrito, leerCarrito, escribirEnCarrito} = require('../helpers/claseCarrito')
+const { leer } = require('../helpers/claseProductos')
 
 
 //Crea el carrito
@@ -32,7 +33,10 @@ const listarProductosPorIdCarrito = async (req = request,res = response)=>{
 
 const agregarProductoACarrito = async (req = request,res = response)=>{
     const {id} = req.params
-    let demo2 = await leerCarrito()
+    //Leer los productos
+    let demo2 = await leer()
+    //Leer el carrito
+    let demo3 = await leerCarrito()
     let demo1 = []
     demo2.map((e)=>{
         if (e.id == id) {
@@ -54,6 +58,7 @@ const borrarCarritoPorId = async (req = request,res = response)=>{
     escribirEnCarrito('carrito.txt',JSON.stringify(demo1))
     res.json({msg:`El carrito con ID ${id} ha sido eliminado`})
 }
+
 
 
 
