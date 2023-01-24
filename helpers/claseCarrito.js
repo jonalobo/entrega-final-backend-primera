@@ -3,18 +3,35 @@ const moment = require("moment");
 
 const { leer } = require("../helpers/claseProductos");
 
-const productosCarrito = [];
+let productosCarrito = '';
 const carritos = []
 
 class Carrito {
   constructor() {
     (this.id = carritos.length + 1),
-    (this.fecha = moment().format());
+    (this.fecha = moment().format()),
+    (this.productos = [])
   }
-  async nuevoCarrito() {
-    return productosCarrito;
+  async nuevoCarrito(arreglo){
+    
+    let productosEnFs = await leerCarrito()
+    if (productosEnFs.length > 0) {
+      const prueba1 = productosEnFs.slice(-1)
+      arreglo.id = prueba1[0].id + 1
+      productosEnFs.push(arreglo)
+      let prodEnCarrito = JSON.stringify(productosEnFs)
+      escribirEnCarrito('carrito.txt',prodEnCarrito)
+      
+    } 
+    if (productosEnFs.length == 0) {
+      productosEnFs.push(arreglo)
+      let prodEnCarrito = JSON.stringify(productosEnFs)
+      escribirEnCarrito('carrito.txt',prodEnCarrito)
+    }
+    
+    /* productosCarrito = arreglo
+    return arreglo */
   }
-
   /* async agregarProductoACarrito (id){
         let productosEnFs = await leer()
         productosEnFs.map((e)=>{
@@ -27,11 +44,24 @@ class Carrito {
     } */
 }
 
-async function agregarNuevoCarrito(carrito) {
+async function leerCarrito() {
+  //Este contenedor debe estar fuera del try catch para evitar bucles
+  let contenedorProducto = [];
+  try {
+    await fs.promises.readFile("carrito.txt", "utf-8").then((contenido) => {
+      contenedorProducto = JSON.parse(contenido);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  return contenedorProducto;
+}
+
+/* async function agregarNuevoCarrito(carrito) {
     carritos.push(carrito)
     console.log(carritos)
     return carritos
-}
+} */
 
 async function escribirEnCarrito(nombre, producto) {
   try {
@@ -44,5 +74,5 @@ async function escribirEnCarrito(nombre, producto) {
 module.exports = {
   Carrito,
   escribirEnCarrito,
-  agregarNuevoCarrito
+  leerCarrito
 };

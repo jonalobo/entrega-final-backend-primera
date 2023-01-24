@@ -1,15 +1,19 @@
 const { Router } = require('express')
-const { verCarrito,crearCarrito,agregarProductoACarrito } = require('../controller/carritoControlador')
+const { crearCarrito,agregarProductoACarrito,borrarCarritoPorId, listarProductosPorIdCarrito } = require('../controller/carritoControlador')
 
 const rutaCarrito = Router()
 
-//Ruta de prueba
-rutaCarrito.get('/carrito',verCarrito)
+
+//Ruta para obtener productos según el carrito elegido
+rutaCarrito.get('/carrito/:id/productos',listarProductosPorIdCarrito)
 
 
 rutaCarrito.post('/carrito',crearCarrito)
 
 
 rutaCarrito.post('/carrito/:id/productos',agregarProductoACarrito)
+
+
+rutaCarrito.delete('/carrito/:id',borrarCarritoPorId)
 
 module.exports = rutaCarrito
