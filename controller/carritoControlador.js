@@ -32,9 +32,15 @@ const listarProductosPorIdCarrito = async (req = request,res = response)=>{
 
 const agregarProductoACarrito = async (req = request,res = response)=>{
     const {id} = req.params
-    const nuevoCarrito =  new Carrito()
-    await nuevoCarrito.agregarProductoACarrito(id)
-    res.json(nuevoCarrito)
+    let demo2 = await leerCarrito()
+    let demo1 = []
+    demo2.map((e)=>{
+        if (e.id == id) {
+            demo1.push(e)
+        }
+    })
+    escribirEnCarrito('carrito.txt',JSON.stringify(demo1))
+    res.json({msg:`El carrito con ID ${id} ha sido eliminado`})
 }
 const borrarCarritoPorId = async (req = request,res = response)=>{
     const {id} = req.params
