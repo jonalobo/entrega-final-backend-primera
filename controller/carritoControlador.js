@@ -8,8 +8,8 @@ const crearCarrito = async (req = request,res = response)=>{
     const newCarrito = new Carrito()
     //Al instanciar un carrito debo agregarlo a un array
     /* agregarNuevoCarrito(newCarrito) */
-    newCarrito.nuevoCarrito(newCarrito)
-    res.json({msg:`Carrito con el ID # ${newCarrito} creado`})
+    let demo1 = await newCarrito.nuevoCarrito(newCarrito)
+    res.json({msg:`Carrito con el ID # ${demo1} creado`})
 }
 
 const listarProductosPorIdCarrito = async (req = request,res = response)=>{

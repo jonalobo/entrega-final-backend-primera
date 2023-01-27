@@ -21,12 +21,13 @@ class Carrito {
       productosEnFs.push(arreglo)
       let prodEnCarrito = JSON.stringify(productosEnFs)
       escribirEnCarrito('carrito.txt',prodEnCarrito)
-      
+      return arreglo.id
     } 
     if (productosEnFs.length == 0) {
       productosEnFs.push(arreglo)
       let prodEnCarrito = JSON.stringify(productosEnFs)
       escribirEnCarrito('carrito.txt',prodEnCarrito)
+      return arreglo.id
     }
     
     /* productosCarrito = arreglo
