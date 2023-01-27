@@ -34,7 +34,6 @@ class Producto {
       const productoTexto = JSON.stringify(prueba)
       escribir("productos.txt", productoTexto)
     } else {
-      console.log('vacio')
       productos.push(productoAgregar)
       const productoTexto = JSON.stringify(productos);
       escribir("productos.txt", productoTexto)
