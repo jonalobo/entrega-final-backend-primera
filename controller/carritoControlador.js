@@ -32,18 +32,19 @@ const listarProductosPorIdCarrito = async (req = request,res = response)=>{
 
 const agregarProductoACarrito = async (req = request,res = response)=>{
     const {id} = req.params
-    //Leer los productos
-    let demo2 = await leer()
-    //Leer el carrito
-    let demo3 = await leerCarrito()
-    let demo1 = []
-    demo2.map((e)=>{
-        if (e.id == id) {
-            demo1.push(e)
-        }
-    })
-    escribirEnCarrito('carrito.txt',JSON.stringify(demo1))
-    res.json({msg:`El carrito con ID ${id} ha sido eliminado`})
+    //Acá hago lectura de los productos y envío el id
+    let demo1 = await  addProductoId(id)
+    //Ahora reviso el carrito e ingreso el producto
+    let demo2 = await leerCarrito()
+    //Obtengo el carrito y debo acceder a sus productos 
+    let arrayCarritoProductos = demo2[0].productos
+    //Acá ingreso al arreglo productos
+    arrayCarritoProductos.push(demo1)
+    //Ahora agrego la modificación al arreglo que va al carrito
+    let prodEnCarrito = JSON.stringify(demo2)
+    escribirEnCarrito('carrito.txt',prodEnCarrito)
+
+    res.status(201).json(arrayCarritoProductos)
 }
 const borrarCarritoPorId = async (req = request,res = response)=>{
     const {id} = req.params
@@ -58,7 +59,18 @@ const borrarCarritoPorId = async (req = request,res = response)=>{
     res.json({msg:`El carrito con ID ${id} ha sido eliminado`})
 }
 
-
+//Funciones auxiliares
+async function addProductoId(identificador) {
+  let demo = { msg: "No existe producto" };
+  let productosDesdeFs = await leer();
+  productosDesdeFs.map((e) => {
+    const numero = e.id;
+    if (numero == identificador) {
+      demo = e;
+    }
+  });
+  return demo;
+}
 
 
 module.exports = {
